@@ -21,7 +21,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          repository: bdemichiel/backend1
           file: Dockerfile
           context: .
           push: true
