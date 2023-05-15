@@ -28,7 +28,7 @@ jobs:
           tag_with_sha: true
           tags: bdemichiel/backend1:${{ github.sha }}
 
-        name: Slack notification
+      - name: Slack notification
         # https://github.com/Ilshidur/action-slack
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
