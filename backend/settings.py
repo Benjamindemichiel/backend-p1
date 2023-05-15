@@ -79,7 +79,7 @@ MIDDLEWARE = [
 
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
 
 # if env("ENVIRONMENT", "local") == 'local':
@@ -92,7 +92,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "backend/templates"),
+            os.path.join(BASE_DIR, 'backend/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
