@@ -26,4 +26,4 @@ jobs:
           push: true
           tag_with_ref: true
           tag_with_sha: true
-          tags: latest, ${{ github.sha }}
+          tags: bdemichiel/backend1:${{ github.sha }}
