@@ -1,0 +1,44 @@
+version: "3"
+services:
+
+  frontend:
+    image: frontend1:1.0.1
+    ports: 
+      - 3000:3000
+    depends_on: 
+      - backend
+    networks:
+      - web-app
+
+  backend:
+    image: backend1:1.0.2
+    env_file: ./backend-p1/django-postgres.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - web-app
+
+  postgres:
+    image: postgres:12-alpine
+    env_file: ./backend-p1/django-postgres.env
+    ports: 
+      - 5432:5432
+    environment:
+      - DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=craftech
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    networks:
+      - web-app
+
+volumes:
+  postgres_db:
+
+networks:
+  web-app:
+
+

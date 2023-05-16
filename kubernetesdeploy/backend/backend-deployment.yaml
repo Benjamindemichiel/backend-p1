@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -o kubernetesdeploy/
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: backend
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: backend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -o kubernetesdeploy/
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/web-app: "true"
+        io.kompose.service: backend
+    spec:
+      containers:
+      - env:
+        - name: ALLOWED_HOSTS
+          valueFrom:
+            configMapKeyRef:
+              key: ALLOWED_HOSTS
+              name: backend
+        - name: DEBUG
+          valueFrom:
+            configMapKeyRef:
+              key: DEBUG
+              name: backend
+        - name: SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SECRET_KEY
+              name: backend
+        - name: SQL_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_DATABASE
+              name: backend
+        - name: SQL_ENGINE
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_ENGINE
+              name: backend
+        - name: SQL_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_HOST
+              name: backend
+        - name: SQL_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_PASSWORD
+              name: backend
+        - name: SQL_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_PORT
+              name: backend
+        - name: SQL_USER
+          valueFrom:
+            configMapKeyRef:
+              key: SQL_USER
+              name: backend
+        image: bdemichiel/backend1:1.0.1
+        imagePullPolicy: IfNotPresent
+        name: backend
+        ports:
+        - containerPort: 8000
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
