@@ -42,8 +42,8 @@ jobs:
 
       - name: Deploy-App
         run: |
-          kubectl apply -f /kubernetesdeploy/postgres/
-          kubectl apply -f /kubernetesdeploy/backend/ 
+          kubectl apply -f ./kubernetesdeploy/postgres/
+          kubectl apply -f ./kubernetesdeploy/backend/ 
 
   slackNotification:
     name: Slack Notification
