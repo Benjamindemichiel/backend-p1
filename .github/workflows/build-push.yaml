@@ -28,13 +28,12 @@ jobs:
           tag_with_sha: true
           tags: bdemichiel/backend1:${{ github.sha }}
 
-      - name: Slack notification
-        # https://github.com/Ilshidur/action-slack
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        uses: Ilshidur/action-slack@2.0.2
-        with:
-          args: 'A new commit has been pushed. Please verify github action:
-          | worflow ${{ fromJson(steps.repo.outputs.result).html_url }}/actions
-          | Exec: ${{ steps.prep.outputs.created }}
-          | Version: ${{ steps.prep.outputs.version }}'
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
