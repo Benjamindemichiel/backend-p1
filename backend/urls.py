@@ -3,7 +3,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
 from rest_framework import routers
 
 from apps.request_loan.views import RequestLoanCreate
@@ -15,7 +14,6 @@ router.register('requests-loan', RequestLoanModelViewSet)
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
-                  path('', TemplateView.as_view(template_name='dashboard.html')),
                   path('', RequestLoanCreate.as_view()),
 
                   path('api/', include(router.urls)),
