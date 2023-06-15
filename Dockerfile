@@ -1,4 +1,5 @@
 FROM python:3.7-slim-bullseye
+ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update \
     && apt-get install -yyq netcat libpq-dev gcc libjpeg-dev zlib1g-dev graphviz-dev
